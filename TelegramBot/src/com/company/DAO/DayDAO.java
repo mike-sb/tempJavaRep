@@ -5,7 +5,7 @@ import com.company.model.Day;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
+@Deprecated
 public class DayDAO {
 
     private Connection connection;
@@ -19,6 +19,7 @@ public class DayDAO {
         this.connection = connection;
     }
 
+    @Deprecated
     public void addDay(Day day) {
         try {
 

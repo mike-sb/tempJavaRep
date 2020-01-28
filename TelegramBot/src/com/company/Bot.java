@@ -1,6 +1,7 @@
 package com.company;
 
 import com.company.model.*;
+import com.company.service.Bot_Service;
 import com.company.service.DB_Service;
 import com.google.inject.internal.cglib.core.$ProcessArrayCallback;
 import org.telegram.telegrambots.ApiContextInitializer;
@@ -31,29 +32,20 @@ public class Bot extends TelegramLongPollingBot {
         } catch (TelegramApiException e) {
             e.printStackTrace();
         }
-
     }
+
     private void regUni(SendMessage sendMessage) {
         try{
-            //adding to the database
-            User user = new User(sendMessage.getChatId());
-            Uni uni = new Uni(sendMessage.getText());
-            DB_Service.getInstance().Uni().addUser(uni,user);
+            sendMessage = Bot_Service.getInstance().regUni(sendMessage);
             execute(sendMessage);
-            //   sendMessage(sendMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
     }
     private void regFaculty(SendMessage sendMessage) {
         try{
-            //adding to the database
-            Faculty faculty = new Faculty(sendMessage.getText());
-            String username = sendMessage.getChatId();
-            DB_Service.getInstance().Faculty().addFaculty(faculty,username);
+            sendMessage = Bot_Service.getInstance().regFaculty(sendMessage);
             execute(sendMessage);
-            //   sendMessage(sendMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -61,182 +53,47 @@ public class Bot extends TelegramLongPollingBot {
 
     private void regGroup(SendMessage sendMessage) {
         try{
-            //adding to the database
-            String str[] = sendMessage.getText().split(",");
-            Group group = new Group(str[0]);
-            group.setSemester(Integer.parseInt(str[1]));
-
-            String username = sendMessage.getChatId();
-            DB_Service.getInstance().Group().addGroup(group,username);
+            sendMessage = Bot_Service.getInstance().regGroup(sendMessage);
             execute(sendMessage);
-            //   sendMessage(sendMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-    private String  newLesson(SendMessage sendMessage) {
-            //String time, String name, String room
-            //adding to the database
-        String[]str = sendMessage.getText().split(",");//name, time, room, weektype, day
+    private void  newLesson(SendMessage sendMessage) {
+        try{
+            sendMessage = Bot_Service.getInstance().newLesson(sendMessage,day);
+            execute(sendMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
-        WeekType weekType= WeekType.none;
-
-        switch (str[3])
-        {
-            case "чёт":
-                weekType = WeekType.odd;
-            case "нечет":
-                weekType = WeekType.even;
+    private void newTask(SendMessage sendMessage) {
+        try{
+            sendMessage = Bot_Service.getInstance().newTask(sendMessage);
+            execute(sendMessage);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        try {
-            Day day = new Day(this.day);
-            Lesson lesson = new Lesson(str[0],str[1],str[2],weekType,day);
-            String username = sendMessage.getChatId();
-            String group_name = DB_Service.getInstance().Group().getGroupName(username);
+    }
 
-            if (group_name!="") {
-                DB_Service.getInstance().Lesson().addLesson(lesson, group_name);
-            }
+    private void newPersonalTask(SendMessage sendMessage) {
+        try{
+       sendMessage = Bot_Service.getInstance().newPersonalTask(sendMessage);
         execute(sendMessage);
-            return "Предмет добавлен";
-        } catch (Exception e) {
-            return e.getMessage();
+    } catch (Exception e) {
+            e.printStackTrace();
         }
-
-    }
-
-    private String newTask(SendMessage sendMessage) {
-        String[]str = sendMessage.getText().split(",",3);//date, name, task
-
-        try {
-            Task task = new Task(str[0],str[1],str[2]);
-
-            //add connection to the group
-
-            String username = sendMessage.getChatId();
-            String group_name = DB_Service.getInstance().Group().getGroupName(username);
-
-            if (group_name!="") {
-                DB_Service.getInstance().Task().addTask(task,group_name);
-            }
-            execute(sendMessage);
-            return "Задание добавлено";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-
-    }
-
-    private String newPersonalTask(SendMessage sendMessage) {
-        String[]str = sendMessage.getText().split(",",3);//date, name, task
-
-        try {
-            PersonalTask task = new PersonalTask(str[0],str[1],str[2]);
-
-            //add connection to the group
-
-            String username = sendMessage.getChatId();
-            task.setUser_id(username);
-            DB_Service.getInstance().Task().addPersonalTask(task);
-
-            execute(sendMessage);
-            return "Задание добавлено";
-        } catch (Exception e) {
-            return e.getMessage();
-        }
-
-    }
-
-    public String getAllUni() {
-        ArrayList<Uni> unis =  DB_Service.getInstance().Uni().getAllUni();
-
-        String str_unis = "";
-        for (Uni u: unis)
-        {
-            str_unis+= u.getName()+"\n";
-        }
-        return str_unis;
-    }
-
-    private String getAllFaculty(String uni_name) {
-        ArrayList<Faculty> faculties =  DB_Service.getInstance().Faculty().getAllFaculties(new Uni(uni_name));
-
-        String str_fac = "";
-        for (Faculty f: faculties)
-        {
-            str_fac+= f.getName()+"\n";
-        }
-        if(str_fac.length()<2)
-        {
-            return "Факультетов не найдено. Проверьте название введёного университета и существует ли этот университет в базе.";
-        }
-        return str_fac;
-    }
-
-    public String getAllGroups(String user_name) {
-        ArrayList<Group> groups =  DB_Service.getInstance().Group().getAllGroups(user_name);
-
-        String str_group = "";
-        for (Group g: groups)
-        {
-            str_group+= g.getGroup_name()+" "+g.getSemester()+"\n";
-        }
-        return str_group;
     }
 
 
-    private void setDayButtons(SendMessage sendMessage)
-    {
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
 
-        List<KeyboardRow> keyboardRows = new ArrayList<>();
-        KeyboardRow keyboardFirstRow = new KeyboardRow();
-        KeyboardRow keyboardSecondRow = new KeyboardRow();
-
-        keyboardFirstRow.add(new KeyboardButton("Понедельник"));
-        keyboardFirstRow.add(new KeyboardButton("Вторник"));
-        keyboardFirstRow.add(new KeyboardButton("Среда"));
-
-        keyboardSecondRow.add(new KeyboardButton("Четверг"));
-        keyboardSecondRow.add(new KeyboardButton("Пятница"));
-        keyboardSecondRow.add(new KeyboardButton("Суббота"));
-
-        keyboardRows.add(keyboardFirstRow);
-        keyboardRows.add(keyboardSecondRow);
-
-        replyKeyboardMarkup.setKeyboard(keyboardRows);
-
-    }
 @Deprecated
     private void newSchedule(SendMessage sendMessage)
     {
-       //      try{
-//            //adding to the database
-//            WeekType weekType= WeekType.none;
-//
-//            switch (sendMessage.getText())
-//            {
-//                case "чёт":
-//                    weekType = WeekType.odd;
-//                case "нечет":
-//                    weekType = WeekType.even;
-//            }
-//
-//            Schedule schedule = new Schedule(weekType);
-//            String username = sendMessage.getChatId();
-//            String group_name = DB_Service.getInstance().getGroup().getGroupName(username);
-//            DB_Service.getInstance().getSchedule().addSchedule(schedule,group_name);
-//
-//            execute(sendMessage);
-//        } catch (TelegramApiException e) {
-//            e.printStackTrace();
-//        }
+
     }
 
 
@@ -291,7 +148,12 @@ public class Bot extends TelegramLongPollingBot {
                     break;
                 case "getFaculty":
                     task = "";
-                    sendMessage.setText(getAllFaculty(message.getText()));
+                    sendMessage.setText(Bot_Service.getInstance().getAllFaculty(message.getText()));
+                    sendMsg(sendMessage);
+                    break;
+                case "getGroup":
+                    task = "";
+                    sendMessage.setText(Bot_Service.getInstance().getAllGroups(message.getText()));
                     sendMsg(sendMessage);
                     break;
             }
@@ -304,7 +166,7 @@ public class Bot extends TelegramLongPollingBot {
                 switch (message.getText()) {
                     case "/help":
                         reply = "Чем могу помочь?";
-                        setHelpButtons(sendMessage);
+                        Bot_Service.getInstance().setHelpButtons(sendMessage);
                         break;
                     case "/new_home_task":
                         reply = "Введите новое задание в форматe:\n дд.мм.гггг, название пары, само задание";
@@ -315,14 +177,18 @@ public class Bot extends TelegramLongPollingBot {
                         reply = "Введите новое задание в форматe:\n дд.мм.гггг, название пары, само задание";
                         break;
                     case "/start":
-                        reply = "Добро пожаловать. Наш бот позволяет не забывать о рассписании, домашних заданиях и персональных заданиях. Как это работает? Староста пишет боту, регистрирует Университет(если такого нет в базе), факультет, группу, и расписание. Далее он может добавлять актуальные домашние задания. \n Для тогот чтобы пользоваться ботом, пожалуйста, зарегистрируйте университет, факультет и группу. \n\nДля помощи вызовите команду '/help'.";
+                        reply = "Добро пожаловать. Наш бот позволяет не забывать о расписании, " +
+                                "домашних и персональных заданиях. Как это работает?\n\n" +
+                                "Староста пишет боту, регистрирует Университет(если такого нет в базе), факультет, группу, и расписание." +
+                                " Далее он может добавлять актуальные домашние задания. \n Для тогот чтобы пользоваться ботом, пожалуйста, зарегистрируйте университет, факультет и группу. \n\n" +
+                                "Для помощи вызовите команду /help .";
                         break;
                     case "/reg_uni":
                         reply = "Введите название университета.";
                         task = "uni";
                         break;
                     case "/get_uni":
-                       reply = getAllUni();
+                       reply = Bot_Service.getInstance().getAllUni();
                         break;
                     case "/reg_faculty":
                         reply = "Введите название фaкультета.";
@@ -330,22 +196,51 @@ public class Bot extends TelegramLongPollingBot {
                         break;
                     case "/get_faculty":
                         task = "getFaculty";
-                        reply = "Введите название университета.";
+                        reply =  Bot_Service.getInstance().getAllFaculty(sendMessage.getChatId());
                         break;
                     case "/reg_group":
                         task = "group";
                         reply = "Введите название группы и семестр в формате: название группы, номер семестра.";
                         break;
+                    case "/get_group":
+                        task = "getGroup";
+                      reply =  Bot_Service.getInstance().getAllGroups(sendMessage.getChatId());
+                        break;
                     case "/add_lesson":
                         task = "day";
                         reply = "Введите день недели.";
-                        setDayButtons(sendMessage);
+                        Bot_Service.getInstance().setDayButtons(sendMessage);
+                        break;
+                    case "/commands":
+                        reply = "Список доступных комманд: \n /help - помощь\n/reg_uni - добавить университет(добавить себя в существующий)\n" +
+                                "/get_uni - посмотреть список университетов \n/reg_faculty - добавить факультет(добавить себя в существующий)\n/get_faculty - список факультетов\n" +
+                                "/setting - настройки\n/reg_group - добавить группу(добавить себя в существующую) \n/get_group - список групп \n/new_home_task - добавить новое дз(общее)\n" +
+                                "/add_personal - добавить персональное дз\n/add_lesson- добавить пару для составления расписания.";
+                        /*
+                            keyboardFirstRow.add(new KeyboardButton("/help"));
+        keyboardFirstRow.add(new KeyboardButton("/reg_uni "));
+        keyboardFirstRow.add(new KeyboardButton("/get_uni"));
+
+        keyboardSecondRow.add(new KeyboardButton("/reg_faculty"));
+        keyboardSecondRow.add(new KeyboardButton("/get_faculty "));
+        keyboardSecondRow.add(new KeyboardButton("/setting"));
+
+        keyboardThirdRow.add(new KeyboardButton("/reg_group "));
+        keyboardThirdRow.add(new KeyboardButton("/get_group "));
+        keyboardThirdRow.add(new KeyboardButton("/new_home_task"));
+
+        keyboardFourthRow.add(new KeyboardButton("/add_personal"));
+        keyboardFourthRow.add(new KeyboardButton("/add_lesson"));
+                         */
+                        Bot_Service.getInstance().setCommandsButtons(sendMessage);
+                        break;
+                    case "/settings":
+                        reply = "Настройки пока не доступны";
                         break;
 
-
-                    default:
+                    default:  reply = "???";
                 }
-                //   sendMessage.setReplyToMessageId(message.getMessageId());
+                //   sendMessage.setReplyToMessageId(message.getMessageId()); //make a reply
                 sendMessage.setText(reply);
 
                 sendMsg(sendMessage);
@@ -354,27 +249,6 @@ public class Bot extends TelegramLongPollingBot {
     }
 
 
-
-    public void setHelpButtons(SendMessage sendMessage)  {
-        ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
-        sendMessage.setReplyMarkup(replyKeyboardMarkup);
-        replyKeyboardMarkup.setSelective(true);
-        replyKeyboardMarkup.setResizeKeyboard(true);
-        replyKeyboardMarkup.setOneTimeKeyboard(false);
-
-        List<KeyboardRow> keyboardRows = new ArrayList<>();
-        KeyboardRow keyboardFirstRow = new KeyboardRow();
-
-        keyboardFirstRow.add(new KeyboardButton("/help"));
-        keyboardFirstRow.add(new KeyboardButton("/settings"));
-
-        keyboardRows.add(keyboardFirstRow);
-
-        replyKeyboardMarkup.setKeyboard(keyboardRows);
-
-
-    }
-
     @Override
     public String getBotUsername() {
         return "Schedully_bot";
@@ -382,7 +256,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "1050325278:AAF4c_Woln5PnWLKJZm3KbiDwBjBeAyVQmM";
+        return "";
     }
 
     //    @Override

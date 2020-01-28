@@ -22,11 +22,11 @@ public class TaskDAO {
 
     public void addTask(Task task) {
         try {
-            String sql_str = "INSERT INTO tasks(date, lesson_name, task) VALUES(?,?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.task(task, date, lesson) VALUES(?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
-            ps.setString(1, task.getDate());
-            ps.setString(2, task.getLesson());
-            ps.setString(3, task.getTask());
+            ps.setString(2, task.getDate());
+            ps.setString(3, task.getLesson());
+            ps.setString(1, task.getTask());
             ps.execute();
 
         } catch (SQLException e) {
@@ -39,11 +39,11 @@ public class TaskDAO {
     public void updateTask(Task task, int id) {
         try {
 
-            String sql_str = "UPDATE  tasks(date, lesson_name, task) VALUES(?,?,?)  WHERE id=?";
+            String sql_str = "UPDATE  bot_db.bot_schema.task(task, date, lesson) VALUES(?,?,?)  WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
-            ps.setString(1, task.getDate());
-            ps.setString(2, task.getLesson());
-            ps.setString(3, task.getTask());
+            ps.setString(2, task.getDate());
+            ps.setString(3, task.getLesson());
+            ps.setString(1, task.getTask());
             ps.setInt(4, id);
             ps.execute();
 
@@ -57,10 +57,10 @@ public class TaskDAO {
         addTask(task);
         try {
 
-            String sql_str = "INSERT INTO group_task(group_name, task_id) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.group_task(group_name, task) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group_name);
-            ps.setString(2, task.getLesson());
+            ps.setString(2, task.getTask());
 
             ps.execute();
 
@@ -71,14 +71,13 @@ public class TaskDAO {
         }
     }
 
-    public void addPersonalTask(PersonalTask task) {
+    public void addPersonalTask(PersonalTask task,String user_name) {
         addTask(task);
         try {
-
-            String sql_str = "INSERT INTO group_task(group_name, task_id) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.user_task(user_name, task_name) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
-            ps.setString(1, task.getLesson());
-            ps.setString(2, task.getUser_id());
+            ps.setString(1, user_name);
+            ps.setString(2, task.getTask());
             ps.execute();
 
         } catch (SQLException e) {

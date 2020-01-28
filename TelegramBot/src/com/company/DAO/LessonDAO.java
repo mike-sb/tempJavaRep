@@ -22,7 +22,7 @@ public class LessonDAO {
     public void addLesson(Lesson lesson) {
         try {
 
-            String sql_str = "INSERT INTO lessons(name,time,room, week_type, day) VALUES(?,?,?,?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.lessons(name,time,room, week_type, day) VALUES(?,?,?,?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, lesson.getName());
             ps.setString(2, lesson.getTime());
@@ -40,11 +40,13 @@ public class LessonDAO {
 
     public int getLessonId(Lesson lesson) {
         try {
-            String sql_str = "SELECT * FROM  lessons WHERE name =?, time =?, room= ?";
+            String sql_str = "SELECT * FROM  bot_db.bot_schema.lessons WHERE name =?, time =?, room= ?, week_type = ?, day = ? ";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, lesson.getName());
             ps.setString(2, lesson.getTime());
             ps.setString(3, lesson.getRoom());
+            ps.setString(4, lesson.getWeekType().toString());
+            ps.setString(5, lesson.getDay().getName());
             ResultSet res = ps.executeQuery();
             int lesson_id=-1;
             while (res.next())
@@ -66,7 +68,7 @@ public class LessonDAO {
         try {
             int lesson_id = getLessonId(lesson);
             if (lesson_id != -1) {
-                String sql_str = "INSERT INTO group_lesson(group_name,lesson_id) VALUES(?,?)";
+                String sql_str = "INSERT INTO bot_db.bot_schema.group_lesson(group_name,lesson_id) VALUES(?,?)";
                 PreparedStatement ps = connection.prepareStatement(sql_str);
                 ps.setString(1, group_name);
                 ps.setInt(2, lesson_id);
@@ -81,11 +83,13 @@ public class LessonDAO {
 
     public void updateLesson(Lesson lesson, int id) {
         try {
-            String sql_str = "UPDATE lessons(name,time,room) VALUES(?,?,?) WHERE id=?";
+            String sql_str = "UPDATE bot_db.bot_schema.lessons(name,time,room,week_type,day) VALUES(?,?,?,?,?) WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, lesson.getName());
             ps.setString(2, lesson.getTime());
             ps.setString(3, lesson.getRoom());
+            ps.setString(4, lesson.getWeekType().toString());
+            ps.setString(5, lesson.getDay().getName());
             ps.setInt(4, id);
             ps.execute();
 

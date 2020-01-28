@@ -24,7 +24,7 @@ public class FacultyDAO {
     public void addFaculty(Faculty faculty) {
         try {
 
-            String sql_str = "INSERT INTO faculty(name) VALUES(?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.faculty(name) VALUES(?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, faculty.getName());
             ps.execute();
@@ -37,15 +37,19 @@ public class FacultyDAO {
     }
 
     public void addFaculty(Faculty faculty, String user_name) {
-        addFaculty(faculty);//adding faculty to te db
-        //adding faculty to the concrete Uni
+            if(!checkIfFacultyExist(faculty)) {
+            addFaculty(faculty);
+            }//adding faculty to te db
+            //adding faculty to the concrete Uni
         try {
-            String sql_str0 = "SELECT * FROM uni_user WHERE user_name=?";
+            String sql_str0 = "SELECT * FROM bot_db.bot_schema.uni_user WHERE user_name=?";
             PreparedStatement ps0 = connection.prepareStatement(sql_str0);
             ps0.setString(1, user_name);
             ps0.execute();
 
             Uni uni = findUni(user_name);//find uni where user equals temporary chatty
+
+          regUserOnFaculty(faculty,user_name);
 
             if(uni!=null) {
                 UniDAO uniDAO = new UniDAO(connection);
@@ -59,10 +63,61 @@ public class FacultyDAO {
         }
     }
 
+    private void regUserOnFaculty(Faculty faculty, String user_name) {
+        if(!checkIfUserExist(faculty,user_name)) {
+            try {
+                String sql_str = "INSERT INTO bot_db.bot_schema.faculty_user(faculty_name, user_name) VALUES(?,?)";
+                PreparedStatement ps = connection.prepareStatement(sql_str);
+                ps.setString(1, faculty.getName());
+                ps.setString(2, user_name);
+                ps.execute();
+            } catch (SQLException e) {
+                System.out.println("Connection Failed");
+                e.printStackTrace();
+                return;
+            }
+        }
+    }
+
+
+    public boolean checkIfFacultyExist(Faculty faculty) {
+        try {
+            String sql_str = "SELECT * FROM bot_db.bot_schema.faculty WHERE name =?";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setString(1, faculty.getName());
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return false;
+        }
+    }
+    public boolean checkIfUserExist(Faculty faculty, String username) {
+        try {
+            String sql_str = "SELECT * FROM bot_db.bot_schema.faculty_user WHERE faculty_name =? AND user_name = ?";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setString(1, faculty.getName());
+            ps.setString(2, username);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                return true;
+            }
+            return false;
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return false;
+        }
+    }
+
     private Uni findUni(String user_name)
     {
         try {
-        String sql_str = "SELECT * FROM uni_user WHERE user_name=?";
+        String sql_str = "SELECT * FROM bot_db.bot_schema.uni_user WHERE user_name=?";
         PreparedStatement ps = connection.prepareStatement(sql_str);
         ps.setString(1, user_name);
         ResultSet res =  ps.executeQuery();
@@ -83,7 +138,7 @@ public class FacultyDAO {
 
     public void updateFaculty(Faculty faculty, int id) {
         try {
-            String sql_str = "UPDATE faculty(name) VALUES(?) WHERE id=?";
+            String sql_str = "UPDATE bot_db.bot_schema.faculty(name) VALUES(?) WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, faculty.getName());
             ps.setInt(2, id);
@@ -98,7 +153,7 @@ public class FacultyDAO {
 
     public void setGroup(Faculty faculty, String group_name) {
         try {
-            String sql_str1 = "SELECT * FROM faculty WHERE name = ?";
+            String sql_str1 = "SELECT * FROM bot_db.bot_schema.faculty WHERE name = ?";
             PreparedStatement ps1 = connection.prepareStatement(sql_str1);
             ps1.setString(1, faculty.getName());
             ResultSet res = ps1.executeQuery();
@@ -107,7 +162,7 @@ public class FacultyDAO {
                 faculty_id = res.getInt(1);
             }
 
-            String sql_str2 = "SELECT * FROM group WHERE name = ?";
+            String sql_str2 = "SELECT * FROM bot_db.bot_schema.group WHERE name = ?";
             PreparedStatement ps2 = connection.prepareStatement(sql_str2);
             ps2.setString(1, group_name);
             res = ps2.executeQuery();
@@ -117,7 +172,7 @@ public class FacultyDAO {
             }
 
             if (faculty_id!=-1&&group_id!=-1) {
-                String sql_str = "INSERT INTO faculty_group(faculty_id,group_id) VALUES(?,?)";
+                String sql_str = "INSERT INTO bot_db.bot_schema.faculty_group(faculty_id,group_id) VALUES(?,?)";
                 PreparedStatement ps3 = connection.prepareStatement(sql_str);
                 ps3.setInt(1, faculty_id);
                 ps3.setInt(2, group_id);
@@ -129,11 +184,13 @@ public class FacultyDAO {
             return;
         }
     }
-    public ArrayList<Faculty> getAllFaculties(Uni uni)
+    public ArrayList<Faculty> getAllFaculties(String user_name)
     {
         ArrayList<Faculty> faculties = new ArrayList<>();
         try {
-            String sql_str = "SELECT * FROM uni_faculty WHERE uni_name =?";
+           Uni uni= findUni(user_name);
+
+            String sql_str = "SELECT * FROM bot_db.bot_schema.uni_faculty WHERE uni_name =?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, uni.getName());
            ResultSet res = ps.executeQuery();

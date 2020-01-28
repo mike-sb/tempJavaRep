@@ -20,11 +20,10 @@ public class GroupDAO {
         this.connection = connection;
     }
 
-    public void addGroup(Group group)
-    {
+    public void addGroup(Group group) {
         try {
 
-            String sql_str = "INSERT INTO group(name,semester) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.group (name,semester) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group.getGroup_name());
             ps.setInt(2, group.getSemester());
@@ -37,10 +36,9 @@ public class GroupDAO {
         }
     }
 
-    public void updateGroup(Group group, int id)
-    {
+    public void updateGroup(Group group, int id) {
         try {
-            String sql_str = "UPDATE group(name,semester) VALUES(?,?) WHERE id=?";
+            String sql_str = "UPDATE bot_db.bot_schema.group(name,semester) VALUES(?,?) WHERE id=?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group.getGroup_name());
             ps.setInt(2, group.getSemester());
@@ -54,15 +52,13 @@ public class GroupDAO {
         }
     }
 
-    public boolean checkIfGroupExist(Group group)
-    {
+    public boolean checkIfGroupExist(Group group) {
         try {
-            String sql_str = "SELECT * FROM group WHERE name =?";
+            String sql_str = "SELECT * FROM bot_db.bot_schema.group WHERE name =?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group.getGroup_name());
             ResultSet res = ps.executeQuery();
-            while (res.next())
-            {
+            while (res.next()) {
                 return true;
             }
             return false;
@@ -72,11 +68,11 @@ public class GroupDAO {
             return false;
         }
     }
-    public Faculty findFaculty(String user_name)
-    {
+
+    public Faculty findFaculty(String user_name) {
 
         try {
-            String sql_str = "SELECT * FROM faculty_user WHERE user_name=?";
+            String sql_str = "SELECT * FROM bot_db.bot_schema.faculty_user WHERE user_name=?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, user_name);
             ResultSet res = ps.executeQuery();
@@ -99,64 +95,61 @@ public class GroupDAO {
     }
 
     public void addGroup(Group group, String user_name) {
-        addUser(group,user_name);
-        if(!checkIfGroupExist(group)) {
+        addUser(group, user_name);
+        if (!checkIfGroupExist(group)) {
             addGroup(group);//adding group to te db
             addAdmin(group, user_name);
             //adding group to the concrete faculty
-                Faculty faculty = findFaculty(user_name);
+            Faculty faculty = findFaculty(user_name);
 
-                if (faculty != null) {
-                    FacultyDAO facultyDAO = new FacultyDAO(connection);
-                    facultyDAO.setGroup(faculty, group.getGroup_name());
-                }
+            if (faculty != null) {
+                FacultyDAO facultyDAO = new FacultyDAO(connection);
+                facultyDAO.setGroup(faculty, group.getGroup_name());
+            }
         }
 
     }
 
     private void addAdmin(Group group, String user_name) {
         try {
-            String sql_str = "INSERT INTO group_admin(group_name,user_name) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.group_admin(group_name,user_name) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group.getGroup_name());
             ps.setString(2, user_name);
             ps.execute();
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
             return;
         }
     }
+
     private void addUser(Group group, String user_name) {
         try {
-            String sql_str = "INSERT INTO group_users(group_name,user_name) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.group_users(group_name,user_name) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, group.getGroup_name());
             ps.setString(2, user_name);
             ps.execute();
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return;
         }
-        catch (SQLException e) {
-                System.out.println("Connection Failed");
-                e.printStackTrace();
-                return;
-            }
-        }
+    }
 
     public String getGroupName(String username) {
         try {
-            String sql_str = "SELECT  * FROM group_users WHERE user_name = ?";
+            String sql_str = "SELECT  * FROM bot_db.bot_schema.group_users WHERE user_name = ?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, username);
-            String name= "";
-           ResultSet res = ps.executeQuery();
-           while (res.next())
-           {
-               name = res.getString(2);
-           }
-           return name;
-        }
-        catch (SQLException e) {
+            String name = "";
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                name = res.getString(2);
+            }
+            return name;
+        } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
             return "";
@@ -165,26 +158,27 @@ public class GroupDAO {
 
     public ArrayList<Group> getAllGroups(String user_name) {
         try {
-           Faculty f = findFaculty(user_name);
-            ArrayList<Group> g= new ArrayList<>();
+            Faculty f = findFaculty(user_name);
+            ArrayList<Group> g = new ArrayList<>();
+
             ArrayList<Integer> group_id = new ArrayList<>();
 
-            String sql_str0 = "SELECT  * FROM faculty_group WHERE faculty_id = ?";
-            PreparedStatement ps0 = connection.prepareStatement(sql_str0);
-            ps0.setInt(1, f.getId());
-            ResultSet res0 = ps0.executeQuery();
-            while (res0.next())
-            {
-                group_id.add(res0.getInt(3));
-            }
+                String sql_str0 = "SELECT  * FROM bot_db.bot_schema.faculty_group WHERE faculty_id = ?";
+                PreparedStatement ps0 = connection.prepareStatement(sql_str0);
+                ps0.setInt(1, f.getId());
+                ResultSet res0 = ps0.executeQuery();
+                while (res0.next()) {
+                    group_id.add(res0.getInt(3));
+                }
 
-            for (int id: group_id) {
-                g.add(getGroupById(id));
+            if (group_id.size() != 0) {
+                for (int id : group_id) {
+                    g.add(getGroupById(id));
+                }
             }
 
             return g;
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
             return null;
@@ -192,19 +186,17 @@ public class GroupDAO {
     }
 
     private Group getGroupById(int id) {
-        try{
-        String sql_str = "SELECT  * FROM group WHERE id = ?";
-        PreparedStatement ps = connection.prepareStatement(sql_str);
-        ps.setInt(1, id);
-        ResultSet res = ps.executeQuery();
-        while (res.next())
-        {
-            Group g = new Group(res.getString(2));
-            g.setSemester(res.getInt(3));
-            return g;
-        }
-        }
-        catch (SQLException e) {
+        try {
+            String sql_str = "SELECT  * FROM bot_db.bot_schema.group WHERE id = ?";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setInt(1, id);
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                Group g = new Group(res.getString(2));
+                g.setSemester(res.getInt(3));
+                return g;
+            }
+        } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
             return null;

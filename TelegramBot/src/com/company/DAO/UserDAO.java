@@ -22,7 +22,7 @@ public class UserDAO {
         if (!checkIfUserExist(user))
         {
             try {
-                String sql_str = "INSERT INTO users(id) VALUES(?)";
+                String sql_str = "INSERT INTO bot_db.bot_schema.users(user_name) VALUES(?)";
                 PreparedStatement ps = connection.prepareStatement(sql_str);
                 ps.setString(1, user.getUser_name());
                 ps.execute();
@@ -34,10 +34,11 @@ public class UserDAO {
             }
         }
     }
+
     public boolean checkIfUserExist(User user)
     {
         try {
-        String sql_str = "SELECT * FROM users WHERE id =?";
+        String sql_str = "SELECT * FROM bot_db.bot_schema.users WHERE user_name =?";
         PreparedStatement ps = connection.prepareStatement(sql_str);
         ps.setString(1, user.getUser_name());
         ResultSet res = ps.executeQuery();

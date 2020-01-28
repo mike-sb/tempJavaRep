@@ -23,7 +23,7 @@ public class UniDAO {
     public void addUni(Uni uni) {
 
             try {
-                String sql_str = "INSERT INTO uni(name) VALUES(?)";
+                String sql_str = "INSERT INTO bot_db.bot_schema.uni(name) VALUES(?)";
                 PreparedStatement ps = connection.prepareStatement(sql_str);
                 ps.setString(1, uni.getName());
                 ps.execute();
@@ -38,7 +38,7 @@ public class UniDAO {
     public boolean checkIfUniExist(Uni uni)
     {
         try {
-            String sql_str = "SELECT * FROM uni WHERE name = ?";
+            String sql_str = "SELECT * FROM bot_db.bot_schema.uni  WHERE name = ?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, uni.getName());
             ResultSet res = ps.executeQuery();
@@ -59,7 +59,7 @@ public class UniDAO {
     public void addFaculty(Uni uni, Faculty faculty)
     {
         try {
-            String sql_str = "INSERT INTO uni_faculty(uni_name, faculty_name) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.uni_faculty(uni_name, faculty_name) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, uni.getName());
             ps.setString(2, faculty.getName());
@@ -75,7 +75,7 @@ public class UniDAO {
     public void updateFaculty(Faculty faculty, int id)
     {
         try {
-            String sql_str = "INSERT INTO uni_faculty(faculty_name) VALUES(?,?) WHERE id =?";
+            String sql_str = "INSERT INTO bot_db.bot_schema.uni_faculty(faculty_name) VALUES(?,?) WHERE id =?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, faculty.getName());
             ps.setInt(2, id);
@@ -95,7 +95,7 @@ public class UniDAO {
         UserDAO userDAO = new UserDAO(connection);
         userDAO.addUser(user);
         try {
-            String sql_str = "INSERT INTO uni_user(uni_name,user_name) VALUES(?,?)";
+            String sql_str = "INSERT INTO bot_db.bot_schema.uni_user(uni_name,user_name) VALUES(?,?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, uni.getName());
             ps.setString(2, user.getUser_name());
@@ -107,11 +107,12 @@ public class UniDAO {
             return;
         }
     }
+
     public ArrayList<Uni> getAllUni()
     {
         ArrayList<Uni> unis= new ArrayList<>();
         try {
-            String sql_str = "SELECT * FROM uni";
+            String sql_str = "SELECT * FROM bot_db.bot_schema.uni";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ResultSet res = ps.executeQuery();
             while (res.next())
