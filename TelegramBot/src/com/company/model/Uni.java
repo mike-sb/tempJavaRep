@@ -3,6 +3,7 @@ package com.company.model;
 import java.util.ArrayList;
 
 public class Uni {
+    private int id;
     private String name;
     private ArrayList<Faculty> faculties;
 
@@ -27,5 +28,13 @@ public class Uni {
     public void addFaculty(Faculty faculty)
     {
         faculties.add(faculty);
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

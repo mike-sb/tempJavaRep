@@ -13,19 +13,24 @@
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>741</IntrospectionStateNumber>
+      <IntrospectionStateNumber>821</IntrospectionStateNumber>
       <Current>1</Current>
-      <Relations>sequence|table|16498|16500|1
+      <Relations>sequence|table|16694|16696|1
+sequence|table|16704|16706|1
+sequence|table|16725|16727|1
+sequence|table|16498|16500|1
 sequence|table|16511|16513|1
 sequence|table|16523|16525|1
 sequence|table|16544|16546|1
 sequence|table|16556|16558|1
 sequence|table|16568|16570|1
-sequence|table|16595|16597|1
 sequence|table|16604|16606|1
 sequence|table|16617|16619|1
 sequence|table|16629|16631|1
 sequence|table|16638|16640|1
+sequence|table|16739|16741|1
+sequence|table|16751|16753|1
+sequence|table|16663|16665|1
 </Relations>
     </database>
     <role id="4" parent="1" name="pg_execute_server_program">
@@ -65,7 +70,7 @@ sequence|table|16638|16640|1
       <ObjectId>16497</ObjectId>
       <StateNumber>659</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>742</IntrospectionStateNumber>
+      <IntrospectionStateNumber>822</IntrospectionStateNumber>
     </schema>
     <schema id="14" parent="3" name="information_schema">
       <ObjectId>13018</ObjectId>
@@ -194,7 +199,15 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="31" parent="13" name="group_id_seq">
+    <sequence id="31" parent="13" name="faculty_user_id_seq">
+      <ObjectId>16704</ObjectId>
+      <StateNumber>789</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="32" parent="13" name="group_id_seq">
       <ObjectId>16523</ObjectId>
       <StateNumber>673</StateNumber>
       <Owner>postgres</Owner>
@@ -202,15 +215,23 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="32" parent="13" name="group_schedule_id_seq">
-      <ObjectId>16595</ObjectId>
-      <StateNumber>708</StateNumber>
+    <sequence id="33" parent="13" name="group_lesson_id_seq">
+      <ObjectId>16725</ObjectId>
+      <StateNumber>800</StateNumber>
       <Owner>postgres</Owner>
       <SequenceIdentity>1</SequenceIdentity>
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="33" parent="13" name="group_users_id_seq">
+    <sequence id="34" parent="13" name="group_task_id_seq">
+      <ObjectId>16751</ObjectId>
+      <StateNumber>818</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="35" parent="13" name="group_users_id_seq">
       <ObjectId>16617</ObjectId>
       <StateNumber>728</StateNumber>
       <Owner>postgres</Owner>
@@ -218,7 +239,7 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="34" parent="13" name="lessons_id_seq">
+    <sequence id="36" parent="13" name="lessons_id_seq">
       <ObjectId>16556</ObjectId>
       <StateNumber>688</StateNumber>
       <Owner>postgres</Owner>
@@ -226,7 +247,15 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="35" parent="13" name="schedule_id_seq">
+    <sequence id="37" parent="13" name="schedule_group_id_seq">
+      <ObjectId>16739</ObjectId>
+      <StateNumber>809</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="38" parent="13" name="schedule_id_seq">
       <ObjectId>16604</ObjectId>
       <StateNumber>713</StateNumber>
       <Owner>postgres</Owner>
@@ -234,7 +263,15 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="36" parent="13" name="uni_faculty_id_seq">
+    <sequence id="39" parent="13" name="tasks_id_seq">
+      <ObjectId>16663</ObjectId>
+      <StateNumber>760</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <sequence id="40" parent="13" name="uni_faculty_id_seq">
       <ObjectId>16638</ObjectId>
       <StateNumber>738</StateNumber>
       <Owner>postgres</Owner>
@@ -242,7 +279,7 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <sequence id="37" parent="13" name="uni_id_seq">
+    <sequence id="41" parent="13" name="uni_id_seq">
       <ObjectId>16498</ObjectId>
       <StateNumber>662</StateNumber>
       <Owner>postgres</Owner>
@@ -250,67 +287,100 @@ sequence|table|16638|16640|1
       <CacheSize>1</CacheSize>
       <DataType>integer</DataType>
     </sequence>
-    <table id="38" parent="13" name="day_lesson">
+    <sequence id="42" parent="13" name="uni_user_id_seq">
+      <ObjectId>16694</ObjectId>
+      <StateNumber>785</StateNumber>
+      <Owner>postgres</Owner>
+      <SequenceIdentity>1</SequenceIdentity>
+      <CacheSize>1</CacheSize>
+      <DataType>integer</DataType>
+    </sequence>
+    <table id="43" parent="13" name="day_lesson">
       <ObjectId>16570</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>693</StateNumber>
     </table>
-    <table id="39" parent="13" name="days">
+    <table id="44" parent="13" name="days">
       <ObjectId>16546</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>724</StateNumber>
     </table>
-    <table id="40" parent="13" name="faculty">
+    <table id="45" parent="13" name="faculty">
       <ObjectId>16513</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>668</StateNumber>
     </table>
-    <table id="41" parent="13" name="faculty_group">
+    <table id="46" parent="13" name="faculty_group">
       <ObjectId>16631</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>733</StateNumber>
     </table>
-    <table id="42" parent="13" name="group">
+    <table id="47" parent="13" name="faculty_user">
+      <ObjectId>16706</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>789</StateNumber>
+    </table>
+    <table id="48" parent="13" name="group">
       <ObjectId>16525</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>673</StateNumber>
     </table>
-    <table id="43" parent="13" name="group_schedule">
-      <ObjectId>16597</ObjectId>
+    <table id="49" parent="13" name="group_lesson">
+      <ObjectId>16727</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>708</StateNumber>
+      <StateNumber>800</StateNumber>
     </table>
-    <table id="44" parent="13" name="group_users">
+    <table id="50" parent="13" name="group_task">
+      <ObjectId>16753</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>818</StateNumber>
+    </table>
+    <table id="51" parent="13" name="group_users">
       <ObjectId>16619</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>728</StateNumber>
+      <StateNumber>795</StateNumber>
     </table>
-    <table id="45" parent="13" name="lessons">
+    <table id="52" parent="13" name="lessons">
       <ObjectId>16558</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>688</StateNumber>
     </table>
-    <table id="46" parent="13" name="schedule">
+    <table id="53" parent="13" name="schedule">
       <ObjectId>16606</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>713</StateNumber>
+      <StateNumber>754</StateNumber>
     </table>
-    <table id="47" parent="13" name="uni">
+    <table id="54" parent="13" name="schedule_group">
+      <ObjectId>16741</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>809</StateNumber>
+    </table>
+    <table id="55" parent="13" name="tasks">
+      <ObjectId>16665</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>767</StateNumber>
+    </table>
+    <table id="56" parent="13" name="uni">
       <ObjectId>16500</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>662</StateNumber>
     </table>
-    <table id="48" parent="13" name="uni_faculty">
+    <table id="57" parent="13" name="uni_faculty">
       <ObjectId>16640</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>738</StateNumber>
+      <StateNumber>781</StateNumber>
     </table>
-    <table id="49" parent="13" name="users">
+    <table id="58" parent="13" name="uni_user">
+      <ObjectId>16696</ObjectId>
+      <Owner>postgres</Owner>
+      <StateNumber>785</StateNumber>
+    </table>
+    <table id="59" parent="13" name="users">
       <ObjectId>16535</ObjectId>
       <Owner>postgres</Owner>
       <StateNumber>678</StateNumber>
     </table>
-    <column id="50" parent="38" name="id">
+    <column id="60" parent="43" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -318,40 +388,40 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.day_lesson_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="51" parent="38" name="day_id">
+    <column id="61" parent="43" name="day_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>693</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="52" parent="38" name="lesson_id">
+    <column id="62" parent="43" name="lesson_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <StateNumber>693</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="53" parent="38" name="day_lesson_id_uindex">
+    <index id="63" parent="43" name="day_lesson_id_uindex">
       <ObjectId>16574</ObjectId>
       <StateNumber>694</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="54" parent="38" name="day_lesson_pk">
+    <index id="64" parent="43" name="day_lesson_pk">
       <ObjectId>16575</ObjectId>
       <StateNumber>695</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="55" parent="38" name="day_lesson_pk">
+    <key id="65" parent="43" name="day_lesson_pk">
       <ObjectId>16576</ObjectId>
       <StateNumber>695</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>day_lesson_pk</UnderlyingIndexName>
     </key>
-    <column id="56" parent="39" name="id">
+    <column id="66" parent="44" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -359,41 +429,41 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.days_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="57" parent="39" name="name">
+    <column id="67" parent="44" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>683</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="58" parent="39" name="weektype">
+    <column id="68" parent="44" name="weektype">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>724</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="59" parent="39" name="days_id_uindex">
+    <index id="69" parent="44" name="days_id_uindex">
       <ObjectId>16553</ObjectId>
       <StateNumber>684</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="60" parent="39" name="days_pk">
+    <index id="70" parent="44" name="days_pk">
       <ObjectId>16554</ObjectId>
       <StateNumber>685</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="61" parent="39" name="days_pk">
+    <key id="71" parent="44" name="days_pk">
       <ObjectId>16555</ObjectId>
       <StateNumber>685</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>days_pk</UnderlyingIndexName>
     </key>
-    <column id="62" parent="40" name="id">
+    <column id="72" parent="45" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -401,34 +471,34 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.faculty_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="63" parent="40" name="name">
+    <column id="73" parent="45" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>668</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="64" parent="40" name="faculty_id_uindex">
+    <index id="74" parent="45" name="faculty_id_uindex">
       <ObjectId>16520</ObjectId>
       <StateNumber>669</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="65" parent="40" name="faculty_pk">
+    <index id="75" parent="45" name="faculty_pk">
       <ObjectId>16521</ObjectId>
       <StateNumber>670</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="66" parent="40" name="faculty_pk">
+    <key id="76" parent="45" name="faculty_pk">
       <ObjectId>16522</ObjectId>
       <StateNumber>670</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>faculty_pk</UnderlyingIndexName>
     </key>
-    <column id="67" parent="41" name="id">
+    <column id="77" parent="46" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -436,41 +506,83 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.faculty_group_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="68" parent="41" name="faculty_id">
+    <column id="78" parent="46" name="faculty_id">
       <Position>2</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>733</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <column id="69" parent="41" name="group_id">
+    <column id="79" parent="46" name="group_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>733</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="70" parent="41" name="faculty_group_id_uindex">
+    <index id="80" parent="46" name="faculty_group_id_uindex">
       <ObjectId>16635</ObjectId>
       <StateNumber>734</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="71" parent="41" name="faculty_group_pk">
+    <index id="81" parent="46" name="faculty_group_pk">
       <ObjectId>16636</ObjectId>
       <StateNumber>735</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="72" parent="41" name="faculty_group_pk">
+    <key id="82" parent="46" name="faculty_group_pk">
       <ObjectId>16637</ObjectId>
       <StateNumber>735</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>faculty_group_pk</UnderlyingIndexName>
     </key>
-    <column id="73" parent="42" name="id">
+    <column id="83" parent="47" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>789</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.faculty_user_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="84" parent="47" name="faculty_name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="85" parent="47" name="user_name">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>789</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="86" parent="47" name="faculty_user_id_uindex">
+      <ObjectId>16713</ObjectId>
+      <StateNumber>790</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="87" parent="47" name="faculty_user_pk">
+      <ObjectId>16714</ObjectId>
+      <StateNumber>791</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="88" parent="47" name="faculty_user_pk">
+      <ObjectId>16715</ObjectId>
+      <StateNumber>791</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>faculty_user_pk</UnderlyingIndexName>
+    </key>
+    <column id="89" parent="48" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -478,83 +590,125 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.group_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="74" parent="42" name="name">
+    <column id="90" parent="48" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>673</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="75" parent="42" name="semester">
+    <column id="91" parent="48" name="semester">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>673</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="76" parent="42" name="group_id_uindex">
+    <index id="92" parent="48" name="group_id_uindex">
       <ObjectId>16532</ObjectId>
       <StateNumber>674</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="77" parent="42" name="group_pk">
+    <index id="93" parent="48" name="group_pk">
       <ObjectId>16533</ObjectId>
       <StateNumber>675</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="78" parent="42" name="group_pk">
+    <key id="94" parent="48" name="group_pk">
       <ObjectId>16534</ObjectId>
       <StateNumber>675</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>group_pk</UnderlyingIndexName>
     </key>
-    <column id="79" parent="43" name="id">
+    <column id="95" parent="49" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>708</StateNumber>
-      <DefaultExpression>nextval(&apos;bot_schema.group_schedule_id_seq&apos;::regclass)</DefaultExpression>
+      <StateNumber>800</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.group_lesson_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="80" parent="43" name="group_id">
+    <column id="96" parent="49" name="group_name">
       <Position>2</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>708</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>800</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="81" parent="43" name="schedule_id">
+    <column id="97" parent="49" name="lesson_id">
       <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>708</StateNumber>
+      <StateNumber>800</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="82" parent="43" name="group_schedule_id_uindex">
-      <ObjectId>16601</ObjectId>
-      <StateNumber>709</StateNumber>
+    <index id="98" parent="49" name="group_lesson_id_uindex">
+      <ObjectId>16734</ObjectId>
+      <StateNumber>801</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="83" parent="43" name="group_schedule_pk">
-      <ObjectId>16602</ObjectId>
-      <StateNumber>710</StateNumber>
+    <index id="99" parent="49" name="group_lesson_pk">
+      <ObjectId>16735</ObjectId>
+      <StateNumber>802</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="84" parent="43" name="group_schedule_pk">
-      <ObjectId>16603</ObjectId>
-      <StateNumber>710</StateNumber>
+    <key id="100" parent="49" name="group_lesson_pk">
+      <ObjectId>16736</ObjectId>
+      <StateNumber>802</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
-      <UnderlyingIndexName>group_schedule_pk</UnderlyingIndexName>
+      <UnderlyingIndexName>group_lesson_pk</UnderlyingIndexName>
     </key>
-    <column id="85" parent="44" name="id">
+    <column id="101" parent="50" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>818</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.group_task_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="102" parent="50" name="group_name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>818</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="103" parent="50" name="task_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>818</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="104" parent="50" name="group_task_id_uindex">
+      <ObjectId>16760</ObjectId>
+      <StateNumber>819</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="105" parent="50" name="group_task_pk">
+      <ObjectId>16761</ObjectId>
+      <StateNumber>820</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="106" parent="50" name="group_task_pk">
+      <ObjectId>16762</ObjectId>
+      <StateNumber>820</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>group_task_pk</UnderlyingIndexName>
+    </key>
+    <column id="107" parent="51" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -562,41 +716,41 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.group_users_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="86" parent="44" name="group_id">
+    <column id="108" parent="51" name="group_name">
       <Position>2</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>728</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>795</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="87" parent="44" name="user_id">
+    <column id="109" parent="51" name="user_name">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>728</StateNumber>
+      <StateNumber>796</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="88" parent="44" name="group_users_id_uindex">
+    <index id="110" parent="51" name="group_users_id_uindex">
       <ObjectId>16626</ObjectId>
-      <StateNumber>729</StateNumber>
+      <StateNumber>795</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="89" parent="44" name="group_users_pk">
+    <index id="111" parent="51" name="group_users_pk">
       <ObjectId>16627</ObjectId>
-      <StateNumber>730</StateNumber>
+      <StateNumber>795</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="90" parent="44" name="group_users_pk">
+    <key id="112" parent="51" name="group_users_pk">
       <ObjectId>16628</ObjectId>
       <StateNumber>730</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>group_users_pk</UnderlyingIndexName>
     </key>
-    <column id="91" parent="45" name="id">
+    <column id="113" parent="52" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -604,47 +758,47 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.lessons_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="92" parent="45" name="name">
+    <column id="114" parent="52" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>688</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="93" parent="45" name="time">
+    <column id="115" parent="52" name="time">
       <Position>3</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>688</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="94" parent="45" name="room">
+    <column id="116" parent="52" name="room">
       <Position>4</Position>
       <DataType>varchar|0s</DataType>
       <StateNumber>688</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="95" parent="45" name="lessons_id_uindex">
+    <index id="117" parent="52" name="lessons_id_uindex">
       <ObjectId>16565</ObjectId>
       <StateNumber>689</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="96" parent="45" name="lessons_pk">
+    <index id="118" parent="52" name="lessons_pk">
       <ObjectId>16566</ObjectId>
       <StateNumber>690</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="97" parent="45" name="lessons_pk">
+    <key id="119" parent="52" name="lessons_pk">
       <ObjectId>16567</ObjectId>
       <StateNumber>690</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>lessons_pk</UnderlyingIndexName>
     </key>
-    <column id="98" parent="46" name="id">
+    <column id="120" parent="53" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -652,41 +806,130 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.schedule_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="99" parent="46" name="day_id">
+    <column id="121" parent="53" name="day_id">
       <Position>2</Position>
-      <DataType>varchar|0s</DataType>
-      <NotNull>1</NotNull>
-      <StateNumber>713</StateNumber>
-      <TypeId>1043</TypeId>
-    </column>
-    <column id="100" parent="46" name="group_id">
-      <Position>3</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>713</StateNumber>
+      <StateNumber>754</StateNumber>
       <TypeId>23</TypeId>
     </column>
-    <index id="101" parent="46" name="schedule_id_uindex">
+    <column id="122" parent="53" name="lesson_name">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>814</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="123" parent="53" name="schedule_id_uindex">
       <ObjectId>16613</ObjectId>
-      <StateNumber>714</StateNumber>
+      <StateNumber>754</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="102" parent="46" name="schedule_pk">
+    <index id="124" parent="53" name="schedule_pk">
       <ObjectId>16614</ObjectId>
-      <StateNumber>715</StateNumber>
+      <StateNumber>754</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="103" parent="46" name="schedule_pk">
+    <key id="125" parent="53" name="schedule_pk">
       <ObjectId>16615</ObjectId>
       <StateNumber>715</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>schedule_pk</UnderlyingIndexName>
     </key>
-    <column id="104" parent="47" name="id">
+    <column id="126" parent="54" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>809</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.schedule_group_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="127" parent="54" name="group_name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>809</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="128" parent="54" name="schedule_id">
+      <Position>3</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>809</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="129" parent="54" name="schedule_group_id_uindex">
+      <ObjectId>16748</ObjectId>
+      <StateNumber>810</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="130" parent="54" name="schedule_group_pk">
+      <ObjectId>16749</ObjectId>
+      <StateNumber>811</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="131" parent="54" name="schedule_group_pk">
+      <ObjectId>16750</ObjectId>
+      <StateNumber>811</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>schedule_group_pk</UnderlyingIndexName>
+    </key>
+    <column id="132" parent="55" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>760</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.tasks_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="133" parent="55" name="date">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>765</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="134" parent="55" name="lesson_name">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <StateNumber>766</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="135" parent="55" name="task">
+      <Position>4</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>767</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="136" parent="55" name="tasks_id_uindex">
+      <ObjectId>16669</ObjectId>
+      <StateNumber>761</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <index id="137" parent="55" name="tasks_pk">
+      <ObjectId>16670</ObjectId>
+      <StateNumber>762</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+      <Primary>1</Primary>
+    </index>
+    <key id="138" parent="55" name="tasks_pk">
+      <ObjectId>16671</ObjectId>
+      <StateNumber>762</StateNumber>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+      <UnderlyingIndexName>tasks_pk</UnderlyingIndexName>
+    </key>
+    <column id="139" parent="56" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -694,40 +937,40 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.uni_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="105" parent="47" name="name">
+    <column id="140" parent="56" name="name">
       <Position>2</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>662</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="106" parent="47" name="uni_id_uindex">
+    <index id="141" parent="56" name="uni_id_uindex">
       <ObjectId>16507</ObjectId>
       <StateNumber>663</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="107" parent="47" name="uni_pk">
+    <index id="142" parent="56" name="uni_pk">
       <ObjectId>16509</ObjectId>
       <StateNumber>665</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <index id="108" parent="47" name="uni_name_uindex">
+    <index id="143" parent="56" name="uni_name_uindex">
       <ObjectId>16508</ObjectId>
       <StateNumber>664</StateNumber>
       <ColNames>name</ColNames>
       <Unique>1</Unique>
     </index>
-    <key id="109" parent="47" name="uni_pk">
+    <key id="144" parent="56" name="uni_pk">
       <ObjectId>16510</ObjectId>
       <StateNumber>665</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>uni_pk</UnderlyingIndexName>
     </key>
-    <column id="110" parent="48" name="id">
+    <column id="145" parent="57" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -735,61 +978,89 @@ sequence|table|16638|16640|1
       <DefaultExpression>nextval(&apos;bot_schema.uni_faculty_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="111" parent="48" name="uni_id">
+    <column id="146" parent="57" name="uni_name">
       <Position>2</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>738</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>774</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <column id="112" parent="48" name="faculty_id">
+    <column id="147" parent="57" name="faculty_name">
       <Position>3</Position>
-      <DataType>integer|0s</DataType>
+      <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>738</StateNumber>
-      <TypeId>23</TypeId>
+      <StateNumber>778</StateNumber>
+      <TypeId>1043</TypeId>
     </column>
-    <index id="113" parent="48" name="uni_faculty_id_uindex">
+    <index id="148" parent="57" name="uni_faculty_id_uindex">
       <ObjectId>16644</ObjectId>
-      <StateNumber>739</StateNumber>
+      <StateNumber>778</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="114" parent="48" name="uni_faculty_pk">
+    <index id="149" parent="57" name="uni_faculty_pk">
       <ObjectId>16645</ObjectId>
-      <StateNumber>740</StateNumber>
+      <StateNumber>778</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="115" parent="48" name="uni_faculty_pk">
+    <key id="150" parent="57" name="uni_faculty_pk">
       <ObjectId>16646</ObjectId>
       <StateNumber>740</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>uni_faculty_pk</UnderlyingIndexName>
     </key>
-    <column id="116" parent="49" name="id">
+    <column id="151" parent="58" name="id">
+      <Position>1</Position>
+      <DataType>integer|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>785</StateNumber>
+      <DefaultExpression>nextval(&apos;bot_schema.uni_user_id_seq&apos;::regclass)</DefaultExpression>
+      <TypeId>23</TypeId>
+    </column>
+    <column id="152" parent="58" name="uni_name">
+      <Position>2</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>785</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <column id="153" parent="58" name="user_name">
+      <Position>3</Position>
+      <DataType>varchar|0s</DataType>
+      <NotNull>1</NotNull>
+      <StateNumber>785</StateNumber>
+      <TypeId>1043</TypeId>
+    </column>
+    <index id="154" parent="58" name="uni_user_id_uindex">
+      <ObjectId>16703</ObjectId>
+      <StateNumber>786</StateNumber>
+      <ColNames>id</ColNames>
+      <Unique>1</Unique>
+    </index>
+    <column id="155" parent="59" name="id">
       <Position>1</Position>
       <DataType>varchar|0s</DataType>
       <NotNull>1</NotNull>
       <StateNumber>678</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="117" parent="49" name="users_id_uindex">
+    <index id="156" parent="59" name="users_id_uindex">
       <ObjectId>16541</ObjectId>
       <StateNumber>679</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
-    <index id="118" parent="49" name="users_pk">
+    <index id="157" parent="59" name="users_pk">
       <ObjectId>16542</ObjectId>
       <StateNumber>680</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="119" parent="49" name="users_pk">
+    <key id="158" parent="59" name="users_pk">
       <ObjectId>16543</ObjectId>
       <StateNumber>680</StateNumber>
       <ColNames>id</ColNames>

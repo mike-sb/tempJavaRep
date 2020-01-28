@@ -22,10 +22,9 @@ public class DayDAO {
     public void addDay(Day day) {
         try {
 
-            String sql_str = "INSERT INTO days(name,weektype) VALUES(?,?)";
+            String sql_str = "INSERT INTO days(name) VALUES(?)";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, day.getName());
-            ps.setString(2, day.getWeekType().toString());
 
             ps.execute();
 
@@ -35,7 +34,5 @@ public class DayDAO {
             return;
         }
     }
-
-    public
 
 }

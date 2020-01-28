@@ -2,7 +2,8 @@ package com.company.model;
 
 public enum WeekType {
     odd,
-    even;
+    even,
+    none;
 
     @Override
     public String toString() {
@@ -10,16 +11,18 @@ public enum WeekType {
         {
             case odd: return "odd";
             case even:return "even";
+            case none:return "none";
         }
         return "nm";//not mentioned
     }
-    public WeekType toEnum(String str)
+    public static WeekType toEnum(String str)
     {
         switch (str)
         {
-            case "odd":  return this.odd ;
-            case "even": return this.even;
+            case "odd":  return WeekType.odd ;
+            case "even": return WeekType.even;
+            case "none": return WeekType.none;
         }
-        return this.odd;
+        return WeekType.none;
     }
 }

@@ -18,7 +18,7 @@ public class DB_Service {
     private FacultyDAO faculty;
     private GroupDAO group;
     private LessonDAO lesson;
-    private ScheduleDAO schedule;
+//    private ScheduleDAO schedule;
     private TaskDAO task;
     private UniDAO uni;
     private UserDAO user;
@@ -61,15 +61,15 @@ public class DB_Service {
         try {
             connection = DriverManager.getConnection(DB_URL, USER, PASS);
             statement = connection.createStatement();
-            day = new DayDAO();
-            faculty = new FacultyDAO();
-            group = new GroupDAO();
-            lesson = new LessonDAO();
-            schedule = new ScheduleDAO();
-            task = new TaskDAO();
-            uni = new UniDAO();
-            user = new UserDAO();
-            week = new WeekTypeDAO();
+            day = new DayDAO(connection);
+            faculty = new FacultyDAO(connection);
+            group = new GroupDAO(connection);
+            lesson = new LessonDAO(connection);
+          //  schedule = new ScheduleDAO(connection);
+            task = new TaskDAO(connection);
+            uni = new UniDAO(connection);
+            user = new UserDAO(connection);
+            week = new WeekTypeDAO(connection);
 
         } catch (SQLException e) {
             System.out.println("Connection Failed");
@@ -101,9 +101,9 @@ public class DB_Service {
         return lesson;
     }
 
-    public ScheduleDAO getSchedule() {
-        return schedule;
-    }
+//    public ScheduleDAO getSchedule() {
+//        return schedule;
+//    }
 
     public TaskDAO getTask() {
         return task;

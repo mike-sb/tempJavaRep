@@ -3,6 +3,7 @@ package com.company.model;
 import java.util.ArrayList;
 
 public class Group {
+    private int id;
    private String group_name;
    private ArrayList<Task> tasks;
    private User admin;
@@ -14,6 +15,9 @@ public class Group {
     public Group(String group_name, User admin) {
         this.group_name = group_name;
         this.admin = admin;
+    }
+    public Group(String group_name) {
+        this.group_name = group_name;
     }
 
     public String getGroup_name() {
@@ -76,5 +80,13 @@ public class Group {
 
     public void setSemester(int semester) {
         this.semester = semester;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
