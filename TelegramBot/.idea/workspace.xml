@@ -2,41 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4caf5b13-4bfb-473f-afe2-498456270482" name="Default Changelist" comment="Added functionality to the bot (Uni, faculty, group, user, lesson, task(not ended))">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/description.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_postgresql_postgresql_9_4_1212_jre7.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/org_telegram_telegrambots_4_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/postgresql_postgresql_9_1_901_1_jdbc4.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/project-template.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/TelegramBot.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/database.properties" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Bot.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/DayDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/FacultyDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/GroupDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/LessonDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/ScheduleDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/TaskDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/UniDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/UserDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/DAO/WeekTypeDAO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Day.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Faculty.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Group.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Lesson.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Schedule.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Task.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/Uni.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/User.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/model/WeekType.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/company/service/DB_Service.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/com/company/model/PersonalTask.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/Bot.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/FacultyDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/FacultyDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/GroupDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/GroupDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/TaskDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/UniDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/UniDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/service/DB_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/service/DB_Service.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,6 +67,66 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="faculty_group: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="faculty_user: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="group: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="group_admin: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="uni: table" type="69fad909:PgImplModel$LocalTable" />
+      </path>
+      <path>
+        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
+        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
+        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
+        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
+        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
+        <item name="uni_faculty: table" type="69fad909:PgImplModel$LocalTable" />
       </path>
       <path>
         <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
@@ -180,8 +213,16 @@
       <option name="presentableId" value="Default" />
       <updated>1580136559702</updated>
       <workItem from="1580136563887" duration="14550000" />
-      <workItem from="1580153927461" duration="16145000" />
+      <workItem from="1580153927461" duration="22066000" />
     </task>
+    <task id="LOCAL-00001" summary="Added functionality to the bot (Uni, faculty, group, user, lesson, task(not ended))">
+      <created>1580170103556</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1580170103556</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

@@ -85,19 +85,19 @@ public class DB_Service {
     }
 
 
-    public DayDAO getDay() {
+    public DayDAO Day() {
         return day;
     }
 
-    public FacultyDAO getFaculty() {
+    public FacultyDAO Faculty() {
         return faculty;
     }
 
-    public GroupDAO getGroup() {
+    public GroupDAO Group() {
         return group;
     }
 
-    public LessonDAO getLesson() {
+    public LessonDAO Lesson() {
         return lesson;
     }
 
@@ -105,19 +105,19 @@ public class DB_Service {
 //        return schedule;
 //    }
 
-    public TaskDAO getTask() {
+    public TaskDAO Task() {
         return task;
     }
 
-    public UniDAO getUni() {
+    public UniDAO Uni() {
         return uni;
     }
 
-    public UserDAO getUser() {
+    public UserDAO User() {
         return user;
     }
 
-    public WeekTypeDAO getWeek() {
+    public WeekTypeDAO Week() {
         return week;
     }
 

@@ -1,6 +1,7 @@
 package com.company.DAO;
 
 import com.company.model.Day;
+import com.company.model.PersonalTask;
 import com.company.model.Schedule;
 import com.company.model.Task;
 
@@ -70,5 +71,20 @@ public class TaskDAO {
         }
     }
 
-    //add connection to the group
+    public void addPersonalTask(PersonalTask task) {
+        addTask(task);
+        try {
+
+            String sql_str = "INSERT INTO group_task(group_name, task_id) VALUES(?,?)";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setString(1, task.getLesson());
+            ps.setString(2, task.getUser_id());
+            ps.execute();
+
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return;
+        }
+    }
 }

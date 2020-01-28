@@ -1,12 +1,14 @@
 package com.company.DAO;
 
 import com.company.model.*;
+import com.google.inject.internal.cglib.proxy.$Factory;
 
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class FacultyDAO {
     private Connection connection;
@@ -126,6 +128,27 @@ public class FacultyDAO {
             e.printStackTrace();
             return;
         }
+    }
+    public ArrayList<Faculty> getAllFaculties(Uni uni)
+    {
+        ArrayList<Faculty> faculties = new ArrayList<>();
+        try {
+            String sql_str = "SELECT * FROM uni_faculty WHERE uni_name =?";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setString(1, uni.getName());
+           ResultSet res = ps.executeQuery();
+           while (res.next())
+           {
+               faculties.add(new Faculty(res.getString(3)));
+           }
+           return faculties;
+
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return null;
+        }
+
     }
 
 }

@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class UniDAO {
     private Connection connection;
@@ -105,5 +106,24 @@ public class UniDAO {
             e.printStackTrace();
             return;
         }
+    }
+    public ArrayList<Uni> getAllUni()
+    {
+        ArrayList<Uni> unis= new ArrayList<>();
+        try {
+            String sql_str = "SELECT * FROM uni";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ResultSet res = ps.executeQuery();
+            while (res.next())
+            {
+                unis.add(new Uni(res.getString(2)));
+            }
+            return unis;
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return null;
+        }
+
     }
 }
