@@ -3,25 +3,25 @@
   <database-model serializer="dbm" dbms="POSTGRES" family-id="POSTGRES" format-version="4.16">
     <root id="1">
       <ServerVersion>12.1</ServerVersion>
-      <StartupTime>1580216352</StartupTime>
+      <StartupTime>1582633286</StartupTime>
     </root>
     <database id="2" parent="1" name="bot_db">
       <ObjectId>16393</ObjectId>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>604</IntrospectionStateNumber>
-      <Relations>sequence|table|16395|16397|1
-sequence|table|16458|16460|1
-sequence|table|16518|16520|1
-sequence|table|16560|16562|1
-sequence|table|16407|16409|1
-sequence|table|16470|16472|1
+      <IntrospectionStateNumber>709</IntrospectionStateNumber>
+      <Relations>sequence|table|16518|16520|1
 sequence|table|16533|16535|1
-sequence|table|16419|16421|1
-sequence|table|16482|16484|1
-sequence|table|16428|16430|1
 sequence|table|16494|16496|1
 sequence|table|16506|16508|1
 sequence|table|16548|16550|1
+sequence|table|16560|16562|1
+sequence|table|16395|16397|1
+sequence|table|16407|16409|1
+sequence|table|16419|16421|1
+sequence|table|16458|16460|1
+sequence|table|16470|16472|1
+sequence|table|16482|16484|1
+sequence|table|16428|16430|1
 sequence|table|16449|16451|1
 </Relations>
     </database>
@@ -29,7 +29,7 @@ sequence|table|16449|16451|1
       <ObjectId>13318</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>489</IntrospectionStateNumber>
+      <IntrospectionStateNumber>707</IntrospectionStateNumber>
       <Current>1</Current>
     </database>
     <role id="4" parent="1" name="pg_execute_server_program">
@@ -69,7 +69,7 @@ sequence|table|16449|16451|1
       <ObjectId>16394</ObjectId>
       <StateNumber>492</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>605</IntrospectionStateNumber>
+      <IntrospectionStateNumber>710</IntrospectionStateNumber>
     </schema>
     <schema id="14" parent="2" name="information_schema">
       <ObjectId>13018</ObjectId>
@@ -168,7 +168,7 @@ sequence|table|16449|16451|1
       <Comment>standard public schema</Comment>
       <StateNumber>276</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>490</IntrospectionStateNumber>
+      <IntrospectionStateNumber>708</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="28" parent="3" name="heap">
@@ -382,7 +382,7 @@ sequence|table|16449|16451|1
     <table id="56" parent="13" name="group_lesson">
       <ObjectId>16484</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>540</StateNumber>
+      <StateNumber>688</StateNumber>
     </table>
     <table id="57" parent="13" name="group_task">
       <ObjectId>16550</ObjectId>
@@ -646,11 +646,11 @@ sequence|table|16449|16451|1
       <DefaultExpression>nextval(&apos;bot_schema.group_lesson_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="98" parent="56" name="group_name">
+    <column id="98" parent="56" name="group_id">
       <Position>2</Position>
-      <DataType>varchar|0s</DataType>
-      <StateNumber>540</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>integer|0s</DataType>
+      <StateNumber>688</StateNumber>
+      <TypeId>23</TypeId>
     </column>
     <column id="99" parent="56" name="lesson_id">
       <Position>3</Position>
@@ -660,13 +660,13 @@ sequence|table|16449|16451|1
     </column>
     <index id="100" parent="56" name="group_lesson_id_uindex">
       <ObjectId>16491</ObjectId>
-      <StateNumber>541</StateNumber>
+      <StateNumber>688</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
     </index>
     <index id="101" parent="56" name="group_lesson_pk">
       <ObjectId>16492</ObjectId>
-      <StateNumber>542</StateNumber>
+      <StateNumber>688</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>

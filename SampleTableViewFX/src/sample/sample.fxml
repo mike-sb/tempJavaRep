@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <columnConstraints>
+      <ColumnConstraints />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="350.0" prefWidth="544.0">
+         <children>
+            <TableView fx:id="table" layoutX="25.0" layoutY="27.0" prefHeight="271.0" prefWidth="308.0">
+              <columns>
+                <TableColumn fx:id="columnName" prefWidth="104.0" text="Имя" />
+                <TableColumn fx:id="columnAge" prefWidth="112.0" text="Возраст" />
+              </columns>
+            </TableView>
+            <TextField fx:id="txtBxName" layoutX="362.0" layoutY="59.0" />
+            <TextField fx:id="txtBxAge" layoutX="362.0" layoutY="104.0" />
+            <Button layoutX="381.0" layoutY="163.0" mnemonicParsing="false" onAction="#AddHuman" prefHeight="25.0" prefWidth="110.0" text="Добавить" />
+            <Button layoutX="384.0" layoutY="211.0" mnemonicParsing="false" onAction="#ShowView" prefHeight="25.0" prefWidth="110.0" text="Button" />
+         </children>
+      </Pane>
+   </children>
+</GridPane>

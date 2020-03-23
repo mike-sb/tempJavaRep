@@ -2,6 +2,7 @@ package com.company.DAO;
 
 import java.sql.Connection;
 
+@Deprecated
 public class WeekTypeDAO {
     private Connection connection;
 

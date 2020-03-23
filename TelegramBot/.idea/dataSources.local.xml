@@ -15,8 +15,8 @@
               <node kind="schema" qname="@" />
             </node>
             <node kind="database">
-              <name qname="postgres" />
               <name qname="bot_db" />
+              <name qname="postgres" />
               <node kind="schema" qname="bot_schema" />
             </node>
             <node kind="database" qname="test_db" />

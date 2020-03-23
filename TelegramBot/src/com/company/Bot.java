@@ -132,9 +132,11 @@ public class Bot extends TelegramLongPollingBot {
                     newLesson(sendMessage);
                     break;
                 case "day":
+                    day = message.getText();
                     task = "lesson";
-                    String reply = "Пара должна быть в формате:\n название пары, чч:мм, аудитория, чёт или нечет.";
+                    String reply = "Пара должна быть в формате:\n название пары, чч:мм, аудитория, чёт или нечет.\n ПРИМЕР:\n УП(лек.), 12:00, 1488л, чёт";
                     sendMessage.setText(reply);
+                    sendMsg(sendMessage);
                     break;
                 case "hometask":
                     task = "";
@@ -157,6 +159,7 @@ public class Bot extends TelegramLongPollingBot {
                     sendMsg(sendMessage);
                     break;
             }
+
         }
         else {
 
@@ -184,14 +187,18 @@ public class Bot extends TelegramLongPollingBot {
                                 "Для помощи вызовите команду /help .";
                         break;
                     case "/reg_uni":
-                        reply = "Введите название университета.";
+                        if(Bot_Service.getInstance().getAllUni()!= null)
+                        reply = "Список доступных универов. Не нашли свой? Добавьте его сами!\n\n"+Bot_Service.getInstance().getAllUni()+"\n";
+                        reply += "Введите название университета.";
                         task = "uni";
                         break;
                     case "/get_uni":
                        reply = Bot_Service.getInstance().getAllUni();
                         break;
                     case "/reg_faculty":
-                        reply = "Введите название фaкультета.";
+                        if(Bot_Service.getInstance().getAllFaculty(message.getChatId().toString())!= null)
+                        reply = "Список доступных факультетов. Не нашли свой? Добавьте его сами!\n\n"+Bot_Service.getInstance().getAllFaculty(message.getChatId().toString())+"\n";
+                        reply += "Введите название фaкультета:";
                         task = "faculty";
                         break;
                     case "/get_faculty":
@@ -200,7 +207,9 @@ public class Bot extends TelegramLongPollingBot {
                         break;
                     case "/reg_group":
                         task = "group";
-                        reply = "Введите название группы и семестр в формате: название группы, номер семестра.";
+                        if(Bot_Service.getInstance().getAllGroups(message.getChatId().toString())!= null)
+                        reply = "Список доступных групп. Не нашли свою? Добавьте её сами!\n\n"+Bot_Service.getInstance().getAllGroups(message.getChatId().toString())+"\n";
+                        reply += "Введите название группы и семестр в формате: НАЗВАНИЕ ГРУППЫ, НОМЕР СЕМЕСТРА \nПРИМЕР:  ЮР2-1 6\n";
                         break;
                     case "/get_group":
                         task = "getGroup";
@@ -211,27 +220,15 @@ public class Bot extends TelegramLongPollingBot {
                         reply = "Введите день недели.";
                         Bot_Service.getInstance().setDayButtons(sendMessage);
                         break;
+                    case "/all_lessons":
+                        reply = Bot_Service.getInstance().getAllLessons(sendMessage.getChatId());
+                        break;
                     case "/commands":
                         reply = "Список доступных комманд: \n /help - помощь\n/reg_uni - добавить университет(добавить себя в существующий)\n" +
                                 "/get_uni - посмотреть список университетов \n/reg_faculty - добавить факультет(добавить себя в существующий)\n/get_faculty - список факультетов\n" +
-                                "/setting - настройки\n/reg_group - добавить группу(добавить себя в существующую) \n/get_group - список групп \n/new_home_task - добавить новое дз(общее)\n" +
+                                "/setting099999999999s - настройки\n/reg_group - добавить группу(добавить себя в существующую) \n/get_group - список групп \n/new_home_task - добавить новое дз(общее)\n" +
                                 "/add_personal - добавить персональное дз\n/add_lesson- добавить пару для составления расписания.";
-                        /*
-                            keyboardFirstRow.add(new KeyboardButton("/help"));
-        keyboardFirstRow.add(new KeyboardButton("/reg_uni "));
-        keyboardFirstRow.add(new KeyboardButton("/get_uni"));
 
-        keyboardSecondRow.add(new KeyboardButton("/reg_faculty"));
-        keyboardSecondRow.add(new KeyboardButton("/get_faculty "));
-        keyboardSecondRow.add(new KeyboardButton("/setting"));
-
-        keyboardThirdRow.add(new KeyboardButton("/reg_group "));
-        keyboardThirdRow.add(new KeyboardButton("/get_group "));
-        keyboardThirdRow.add(new KeyboardButton("/new_home_task"));
-
-        keyboardFourthRow.add(new KeyboardButton("/add_personal"));
-        keyboardFourthRow.add(new KeyboardButton("/add_lesson"));
-                         */
                         Bot_Service.getInstance().setCommandsButtons(sendMessage);
                         break;
                     case "/settings":
@@ -256,7 +253,7 @@ public class Bot extends TelegramLongPollingBot {
 
     @Override
     public String getBotToken() {
-        return "";
+        return "1050325278:AAF4c_Woln5PnWLKJZm3KbiDwBjBeAyVQmM";
     }
 
     //    @Override

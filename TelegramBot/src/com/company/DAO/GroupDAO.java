@@ -159,10 +159,10 @@ public class GroupDAO {
     public ArrayList<Group> getAllGroups(String user_name) {
         try {
             Faculty f = findFaculty(user_name);
-            ArrayList<Group> g = new ArrayList<>();
+            if(f!=null) {
+                ArrayList<Group> g = new ArrayList<>();
 
-            ArrayList<Integer> group_id = new ArrayList<>();
-
+                ArrayList<Integer> group_id = new ArrayList<>();
                 String sql_str0 = "SELECT  * FROM bot_db.bot_schema.faculty_group WHERE faculty_id = ?";
                 PreparedStatement ps0 = connection.prepareStatement(sql_str0);
                 ps0.setInt(1, f.getId());
@@ -171,13 +171,15 @@ public class GroupDAO {
                     group_id.add(res0.getInt(3));
                 }
 
-            if (group_id.size() != 0) {
-                for (int id : group_id) {
-                    g.add(getGroupById(id));
+                if (group_id.size() != 0) {
+                    for (int id : group_id) {
+                        g.add(getGroupById(id));
+                    }
                 }
-            }
 
-            return g;
+                return g;
+            }
+            return null;
         } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
@@ -204,4 +206,21 @@ public class GroupDAO {
         return null;
     }
 
+    public int getGroupId(String username) {
+        try {
+            String sql_str = "SELECT  * FROM bot_db.bot_schema.group_users WHERE user_name = ?";
+            PreparedStatement ps = connection.prepareStatement(sql_str);
+            ps.setString(1, username);
+            int id = -1;
+            ResultSet res = ps.executeQuery();
+            while (res.next()) {
+                id = res.getInt(1);
+            }
+            return id;
+        } catch (SQLException e) {
+            System.out.println("Connection Failed");
+            e.printStackTrace();
+            return -1;
+        }
+    }
 }

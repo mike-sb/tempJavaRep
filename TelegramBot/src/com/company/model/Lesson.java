@@ -9,13 +9,13 @@ public class Lesson {
     private WeekType weekType;
     private Day day;
 
-    public Lesson(String time, String name, String room,WeekType weekType, Day day) throws Exception {
+    public Lesson( String name,String time, String room,WeekType weekType, Day day) throws Exception {
         setTime(time);
         setName(name);
         setRoom(room);
         setWeekType(weekType);
         setDay(day);
-    }
+    }//name, time, room, weektype, day
 
     public Lesson() {
     }

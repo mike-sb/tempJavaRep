@@ -13,6 +13,9 @@
       <change beforePath="$PROJECT_DIR$/src/com/company/DAO/TaskDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/TaskDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/DAO/UniDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/UniDAO.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/DAO/WeekTypeDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/DAO/WeekTypeDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/model/Lesson.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/model/Lesson.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/company/model/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/model/Task.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/company/service/DB_Service.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/company/service/DB_Service.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -20,11 +23,6 @@
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DatabaseLocalColorSettings">
-    <colors>
-      <entry key="7b059a52-1436-42f5-8c00-41c6e04b43ad" value="Blue" />
-    </colors>
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -85,16 +83,6 @@
         <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="faculty_user: table" type="69fad909:PgImplModel$LocalTable" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="bot_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
-        <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="group_task: table" type="69fad909:PgImplModel$LocalTable" />
       </path>
       <path>
@@ -106,26 +94,6 @@
         <item name="bot_schema: schema" type="983ebcf7:PgImplModel$Schema" />
         <item name="tables" type="d4e8921:DatabaseStructure$FamilyGroup" />
         <item name="task: table" type="69fad909:PgImplModel$LocalTable" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="bot_db: database" type="162271b6:PgImplModel$Database" />
-        <item name="extensions" type="d4e8921:DatabaseStructure$FamilyGroup" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-      </path>
-      <path>
-        <item name="Database" type="3277223f:DatabaseStructure$DbRootGroup" />
-        <item name="postgres@localhost" type="feb32156:DbDataSourceImpl" />
-        <item name="databases" type="d4e8921:DatabaseStructure$FamilyGroup" />
-        <item name="postgres: database" type="162271b6:PgImplModel$Database" />
-        <item name="schemas" type="d4e8921:DatabaseStructure$FamilyGroup" />
       </path>
     </expand>
     <select />
@@ -158,7 +126,7 @@
     <property name="Repository.Attach.Sources" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../IMS_FX" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Libraries" />
     <property name="project.structure.proportion" value="0.15" />
@@ -205,7 +173,20 @@
       <updated>1580136559702</updated>
       <workItem from="1580136563887" duration="14550000" />
       <workItem from="1580153927461" duration="27598000" />
-      <workItem from="1580216077195" duration="15708000" />
+      <workItem from="1580216077195" duration="16149000" />
+      <workItem from="1580250287217" duration="1166000" />
+      <workItem from="1580285265743" duration="10374000" />
+      <workItem from="1580913640245" duration="314000" />
+      <workItem from="1581253594805" duration="7301000" />
+      <workItem from="1581488488051" duration="5183000" />
+      <workItem from="1582097350694" duration="999000" />
+      <workItem from="1582122238663" duration="22000" />
+      <workItem from="1582122340103" duration="1167000" />
+      <workItem from="1582233314493" duration="167000" />
+      <workItem from="1582717869465" duration="1302000" />
+      <workItem from="1583050683852" duration="691000" />
+      <workItem from="1583305768892" duration="387000" />
+      <workItem from="1583323267184" duration="11000" />
     </task>
     <task id="LOCAL-00001" summary="Added functionality to the bot (Uni, faculty, group, user, lesson, task(not ended))">
       <created>1580170103556</created>

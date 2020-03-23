@@ -5,14 +5,14 @@ import java.util.regex.Pattern;
 
 public class Task {
     private int id;
-    private String date;
-    private String  lesson;
-    private String task;
+    private String date;//Date
+    private String  lesson;//Subject
+    private String description;
 
     public Task(String date, String lesson, String task) throws Exception {
       setDate(date);
         setLesson(lesson);
-        setTask(task);
+        setDescription(task);
     }
 
     public String getDate()
@@ -39,12 +39,12 @@ public class Task {
         this.lesson = lesson;
     }
 
-    public String getTask() {
-        return task;
+    public String getDescription() {
+        return description;
     }
 
-    public void setTask(String task) {
-        this.task = task;
+    public void setDescription(String task) {
+        description = task;
     }
 
     public int getId() {

@@ -86,8 +86,8 @@ public class Bot_Service {
         //String time, String name, String room
         //adding to the database
 
-        String[] str = sendMessage.getText().split(",");//name, time, room, weektype, day
-
+        String[] str = sendMessage.getText().split(", ");//name, time, room, weektype, day
+        System.out.println(str[1]);
         WeekType weekType = WeekType.none;
 
         switch (str[3]) {
@@ -101,10 +101,10 @@ public class Bot_Service {
             Day day = new Day(d);
             Lesson lesson = new Lesson(str[0], str[1], str[2], weekType, day);
             String username = sendMessage.getChatId();
-            String group_name = DB_Service.getInstance().Group().getGroupName(username);
+            int group_id = DB_Service.getInstance().Group().getGroupId(username);
 
-            if (group_name != "") {
-                DB_Service.getInstance().Lesson().addLesson(lesson, group_name);
+            if (group_id != -1) {
+                DB_Service.getInstance().Lesson().addLesson(lesson, group_id);
             }
 
             //    execute(sendMessage);
@@ -177,8 +177,8 @@ public class Bot_Service {
         return str_unis;
     }
 
-    public String getAllFaculty(String unser_name) {
-        ArrayList<Faculty> faculties = DB_Service.getInstance().Faculty().getAllFaculties(unser_name);
+    public String getAllFaculty(String user_name) {
+        ArrayList<Faculty> faculties = DB_Service.getInstance().Faculty().getAllFaculties(user_name);
 
         String str_fac = "";
         if (faculties.size() > 0) {
@@ -195,7 +195,7 @@ public class Bot_Service {
         ArrayList<Group> groups = DB_Service.getInstance().Group().getAllGroups(user_name);
 
         String str_group = "Группа___Семестр\n";
-        if (groups.size() > 0) {
+        if (groups.size() > 0&&groups!=null) {
             for (Group g : groups) {
                 str_group += g.getGroup_name() + " " + g.getSemester() + "\n";
             }
@@ -206,7 +206,6 @@ public class Bot_Service {
     }
 
     public String getCurrentGroupHomework(String user_name) {
-
         return "";
     }
 
@@ -280,7 +279,7 @@ public class Bot_Service {
 
         keyboardSecondRow.add(new KeyboardButton("/reg_faculty"));
         keyboardSecondRow.add(new KeyboardButton("/get_faculty "));
-        keyboardSecondRow.add(new KeyboardButton("/setting"));
+        keyboardSecondRow.add(new KeyboardButton("/settings"));
 
         keyboardThirdRow.add(new KeyboardButton("/reg_group "));
         keyboardThirdRow.add(new KeyboardButton("/get_group "));
@@ -295,5 +294,19 @@ public class Bot_Service {
         keyboardRows.add(keyboardFourthRow);
 
         replyKeyboardMarkup.setKeyboard(keyboardRows);
+    }
+
+    public String getAllLessons(String user_name) {
+        ArrayList<Lesson> lessons = DB_Service.getInstance().Lesson().getAllLessons(user_name);
+
+        String lessons_str = "";
+        if (lessons.size() > 0&&lessons!=null) {
+            for (Lesson g : lessons) {
+                lessons_str += g.getName() + " " + g.getRoom() +" "+ g.getTime()+" "+g.getWeekType()+ " "+ g.getDay().getName()+"\n";
+            }
+        } else {
+            return "Занятий не найдено.";
+        }
+        return lessons_str;
     }
 }

@@ -47,9 +47,10 @@ public class FacultyDAO {
             ps0.setString(1, user_name);
             ps0.execute();
 
+            regUserOnFaculty(faculty,user_name);
             Uni uni = findUni(user_name);//find uni where user equals temporary chatty
 
-          regUserOnFaculty(faculty,user_name);
+
 
             if(uni!=null) {
                 UniDAO uniDAO = new UniDAO(connection);
@@ -82,14 +83,11 @@ public class FacultyDAO {
 
     public boolean checkIfFacultyExist(Faculty faculty) {
         try {
-            String sql_str = "SELECT * FROM bot_db.bot_schema.faculty WHERE name =?";
+            String sql_str = "SELECT FROM bot_db.bot_schema.faculty WHERE name =?";
             PreparedStatement ps = connection.prepareStatement(sql_str);
             ps.setString(1, faculty.getName());
             ResultSet res = ps.executeQuery();
-            while (res.next()) {
-                return true;
-            }
-            return false;
+            return res.next();
         } catch (SQLException e) {
             System.out.println("Connection Failed");
             e.printStackTrace();
